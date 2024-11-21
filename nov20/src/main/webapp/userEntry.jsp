@@ -9,6 +9,7 @@
 <body>
 	<h3 align="center">개인 정보 입력</h3>
 	<form action="register.do" method="post" onsubmit="return check(this)" name="frm">
+	<input type="hidden" name="idChecked"> <!-- 중복검사 유무를 확인하기 위한 파라미터 작성 -->
 	<table>
 		<tr><th>계 정</th><td><input type="text" name="ID"/>
 			<input type="button" value="중복검사" onclick="idCheck()"/></td></tr>
@@ -18,7 +19,7 @@
 		<tr><th>암 호</th><td><input type="password" name="PW"/></td></tr>
 		<tr><th>암호확인</th><td><input type="password" name="CONFTRM"/></td></tr>
 		<tr><th>성 별</th><td>남<input type="radio" name="GENDER" value="M"/>,
-						<td>여<input type="radio" name="GENDER" value="F"/></td></tr>
+						여<input type="radio" name="GENDER" value="F"/></td></tr>
 		<tr><th>이메일</th><td><input type="text" name="EMAIL"/></td></tr>
 		<tr><th>생 일</th><td><input type="date" name="BIRTH"/></td></tr>
 		<tr><th>직 업</th><td>
@@ -31,7 +32,31 @@
 	</table><br/>
 	</form>
 <script type="text/javascript">
+
+function check() {
+	if(frm.ID.value == '') {
+		alert("계정을 입력하세요.");
+		frm.ID.focus();		return false;
+	}
+	if(frm.idChecked.value == '') {
+		alert("ID 중복검사를 해야합니다."); return false;
+	}
+	
+	alert()
+	if(frm.NAME.value == '') {
+		alert("이름을 입력하세요."); return false;
+	}
+
+	
+}
+
 function idCheck() {
+	if(document.frm.ID.value == '') {
+		alert("계정을 입력하세요.");
+		document.frm.ID.focus();
+		return false; 
+	}
+	
 	var url = "idCheck.do?ID="+document.frm.ID.value;
 	window.open(url, "_blank_", "width=450, height=200")
 	
