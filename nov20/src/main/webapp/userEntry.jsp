@@ -8,8 +8,9 @@
 </head>
 <body>
 	<h3 align="center">개인 정보 입력</h3>
+	
 	<form action="register.do" method="post" onsubmit="return check(this)" name="frm">
-	<input type="hidden" name="idChecked"> <!-- 중복검사 유무를 확인하기 위한 파라미터 작성 -->
+	<input type="hidden" name="idChecked"> <!-- 중복검사 유무를 확인하기 위한 파라미터(idChecked) 작성 -->
 	<table>
 		<tr><th>계 정</th><td><input type="text" name="ID"/>
 			<input type="button" value="중복검사" onclick="idCheck()"/></td></tr>
@@ -17,7 +18,7 @@
 		<tr><th>주 소</th><td><input type="text" name="ADDR"/></td></tr>
 		<tr><th>연락처</th><td><input type="text" name="PHONE"/></td></tr>
 		<tr><th>암 호</th><td><input type="password" name="PW"/></td></tr>
-		<tr><th>암호확인</th><td><input type="password" name="CONFTRM"/></td></tr>
+		<tr><th>암호확인</th><td><input type="password" name="CONFIRM"/></td></tr>
 		<tr><th>성 별</th><td>남<input type="radio" name="GENDER" value="M"/>,
 						여<input type="radio" name="GENDER" value="F"/></td></tr>
 		<tr><th>이메일</th><td><input type="text" name="EMAIL"/></td></tr>
@@ -34,20 +35,24 @@
 <script type="text/javascript">
 
 function check() {
-	if(frm.ID.value == '') {
-		alert("계정을 입력하세요.");
-		frm.ID.focus();		return false;
-	}
-	if(frm.idChecked.value == '') {
-		alert("ID 중복검사를 해야합니다."); return false;
-	}
-	
-	alert()
-	if(frm.NAME.value == '') {
-		alert("이름을 입력하세요."); return false;
-	}
+	if(frm.ID.value == '') { alert("계정을 입력하세요."); 	frm.ID.focus();	return false; }
+	if(frm.idChecked.value == '') {	alert("ID 중복검사를 해야합니다."); return false; }
+	if(frm.NAME.value == '') { alert("이름을 입력하세요."); frm.NAME.focus(); return false; }
+	if(frm.ADDR.value == '') { alert("주소를 입력하세요."); frm.ADDR.focus(); return false; }
+	if(frm.PHONE.value == '') { alert("연락처를 입력하세요."); frm.PHONE.focus(); return false; }
+	if(frm.PW.value == '') { alert("암호를 입력하세요."); frm.PW.focus(); return false; }
 
+	if(frm.PW.value != frm.CONFIRM.value) {
+		alert("암호가 일치하지 않습니다."); frm.PW.focus(); return false; 
+	}
+	if( ! frm.GENDER[0].checked && ! frm.GENDER[1].checked) {
+		alert("성별을 선택하세요."); return false;
+	}
+	if( frm.JOB.selectedIndex < 1) {
+		alert("직업을 선택하세요."); frm.JOB.focus(); return false;
+	}// selectedIndex 속성에는 콤보박스에서 선택한 데이터의 순서번호(인덱스)가 들어감
 	
+	if( !confire("(정말로 가입하시겠습니끼?)") ) return false;
 }
 
 function idCheck() {

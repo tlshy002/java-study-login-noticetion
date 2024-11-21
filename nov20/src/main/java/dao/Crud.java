@@ -11,9 +11,23 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import login.LoginDTO;
 import notice.FromTo;
 import notice.NoticeDTO;
+import user.UserInfo;
 
 public class Crud { //매퍼의 쿼리를 호출
 	private final String MAPPER_NAME="noticeMapper"; //매퍼의 이름을 선언
+	
+	public Integer insertUser(UserInfo dto) {
+		SqlSession ss = this.getSession();
+		Integer result;
+		try {
+			result = ss.insert(MAPPER_NAME + ".putUser", dto);
+			if(result > 0) ss.commit();
+			else ss.rollback();
+		} finally {
+			ss.close();
+		}
+		return result;
+	}
 	
 	public String getIdCheck(String id) {
 		SqlSession ss = this.getSession();
