@@ -46,7 +46,7 @@ td.main { width: 30%; border: 1px solid green; }
 					<a href="">■ 상품 보기</a><br>
 					<a href="itemLoginCheck.do">■ 상품 등록</a><br>
 					<a href="index.jsp?BODY=imageWriteForm.jsp">■ 이미지 및 답글 게시글 쓰기</a><br>
-					<a href="">■ 이미지 및 답글 게시글 보기</a><br>
+					<a href="imageList.do">■ 이미지 및 답글 게시글 보기</a><br>
 					
 					
 					<a href="noticeList.do">■ 공지사항 보기</a><br>

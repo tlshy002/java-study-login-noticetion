@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>이미지 게시글 작성</h2>
+	<h3 align="center">이미지 게시글 작성</h3>
 	<form action="imageWrite.do" method="post" enctype="multipart/form-data"
 			onsubmit="return check(this)"> <!-- this: 현재의 객체인 form을 의미함 -->
 	<table>
