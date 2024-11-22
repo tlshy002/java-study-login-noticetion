@@ -34,14 +34,43 @@
 	</form>
 <script type="text/javascript">
 
-function check() {
-	if(frm.ID.value == '') { alert("계정을 입력하세요."); 	frm.ID.focus();	return false; }
+function check(frm) { //인자로 (this)form 자체가 들어오기 때문에 document객체 없이 사용함
+	if(frm.ID.value == '') {
+		alert("계정을 입력하세요."); 
+		frm.ID.focus(); return false;
+	} else {
+		if(frm.ID.value.length < 6 || frm.ID.value.length > 15) {
+			alert("계정은 6자 이상, 15자 이하로 입력하세요."); 
+			frm.ID.focus(); return false;
+		}
+	}
+	
+	if(frm.ID.value == '') { alert("계정을 입력하세요."); frm.ID.focus();	return false; }
 	if(frm.idChecked.value == '') {	alert("ID 중복검사를 해야합니다."); return false; }
 	if(frm.NAME.value == '') { alert("이름을 입력하세요."); frm.NAME.focus(); return false; }
+	else {
+		if(frm.NAME.value.length > 30) {
+			alert("이름은 30자 이내로 입력하세요."); frm.NAME.focus(); return false;
+		}
+	}
 	if(frm.ADDR.value == '') { alert("주소를 입력하세요."); frm.ADDR.focus(); return false; }
+	else {
+		if(frm.ADDR.value.length > 30) {
+			alert("주소는 30자 이내로 입력하세요."); frm.ADDR.focus(); return false;
+		}
+	}
 	if(frm.PHONE.value == '') { alert("연락처를 입력하세요."); frm.PHONE.focus(); return false; }
+	else {
+		if(frm.PHONE.value.length > 15) {
+			alert("연락처는 15자 이내로 입력하세요."); frm.PHONE.focus(); return false;
+		}
+	}
 	if(frm.PW.value == '') { alert("암호를 입력하세요."); frm.PW.focus(); return false; }
-
+	else {
+		if(frm.PW.value.length > 15) {
+			alert("암호는 15자 이내로 입력하세요."); frm.PW.focus(); return false;
+		}
+	}
 	if(frm.PW.value != frm.CONFIRM.value) {
 		alert("암호가 일치하지 않습니다."); frm.PW.focus(); return false; 
 	}
@@ -52,18 +81,26 @@ function check() {
 		alert("직업을 선택하세요."); frm.JOB.focus(); return false;
 	}// selectedIndex 속성에는 콤보박스에서 선택한 데이터의 순서번호(인덱스)가 들어감
 	
-	if( !confire("(정말로 가입하시겠습니끼?)") ) return false;
+	if( !confirm("(정말로 가입하시겠습니끼?)") ) return false;
 }
 
 function idCheck() {
+	
 	if(document.frm.ID.value == '') {
+		
 		alert("계정을 입력하세요.");
 		document.frm.ID.focus();
 		return false; 
+	} else {
+		
+		if(document.frm.ID.value.length < 6 || document.frm.ID.value.length > 15) {
+			alert("계정은 6자 이상, 15자 이하로 입력하세요."); 
+			document.frm.ID.focus(); return false;
+		}
 	}
 	
 	var url = "idCheck.do?ID="+document.frm.ID.value;
-	window.open(url, "_blank_", "width=450, height=200")
+	window.open(url, "_blank_", "width=450, height=200");
 	
 }
 </script>
