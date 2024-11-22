@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -8,10 +9,33 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import image.ImageBBS;
+import notice.FromTo;
 
 public class ImageCrud {
 	private final String MAPPER="imageMapper"; //매퍼의 이름을 선언
 	
+	public int getTotalImage() {
+		SqlSession ss = this.getSession();
+		Integer totalCount = 0;
+		try {
+			totalCount = ss.selectOne(MAPPER + ".getTotal");
+			if(totalCount == null) totalCount = 0;
+		} finally {
+			ss.close();
+		}
+		return totalCount;
+	}
+	
+	public ArrayList<ImageBBS> getImageList(FromTo ft) {
+		SqlSession ss = this.getSession();
+		ArrayList<ImageBBS> list; //조회결과 저장을 위한 변수
+		try {
+			list = (ArrayList)ss.selectList(MAPPER + ".imageList", ft);
+		} finally {
+			ss.close();
+		}
+		return list;
+	} 
 	
 	public int insertImageBBS(ImageBBS dto) {
 		SqlSession ss = this.getSession();

@@ -3,6 +3,21 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="imageMapper">
+	
+	<select id="getTotal" resultType="Integer">
+		select count(*) from imagebbs_tbl
+	</select>
+	
+	<!-- 페이지네이션을 위한 조회 -->
+	<select id="imageList" parameterType="notice.FromTo" resultType="image.ImageBBS">
+		select w_id, title, writer, w_date, imagename
+		from (select rownum rank, a.*
+			from(select w_id, title, writer, 
+				to_char(w_date, 'YYYY/MM/DD') as w_date, imagename
+				from imagebbs_tbl order by w_id desc) a )
+		where rank > #{start} and rank <![CDATA[<]]> #{end}
+	</select>
+
 	<insert id="putImageBBS" parameterType="image.ImageBBS">
 		insert into imagebbs_tbl values(#{w_id},#{group_id},#{parent_id},#{order_no},
 		#{title},#{content},#{writer},sysdate,#{imagename},#{password})
