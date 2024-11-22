@@ -25,7 +25,7 @@
 	<tr><td><img alt="" src="upload/<%= dto.getImagename() %>" width="50" height="50"/></td>
 	
 		<td><%= dto.getW_id() %></td>
-		<td><%= dto.getTitle() %></td>
+		<td><a href="imageDetail.do?ID=<%= dto.getW_id() %>"><%= dto.getTitle() %></a></td>
 		<td><%= dto.getWriter() %></td>
 		<td><%= dto.getW_date() %></td></tr>
 	<% } %>

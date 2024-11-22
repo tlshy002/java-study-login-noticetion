@@ -41,6 +41,10 @@ public class ImageListServlet extends HttpServlet {
 		request.setAttribute("LIST", imageList);
 		request.setAttribute("TOTAL", totalCount);
 		request.setAttribute("START", startRow + 1); //1페이지 쿼리에서 0번~6번으로 작성했지만 실제로는 1번~5번을 의미하기때문에 시작+1, 끝-1 했음
+		
+		if(endRow > totalCount) {
+			endRow = totalCount + 1;
+		}
 		request.setAttribute("END", endRow - 1);
 		
 		RequestDispatcher r = request.getRequestDispatcher("index.jsp?BODY=imageList.jsp");

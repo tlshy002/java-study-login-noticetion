@@ -10,9 +10,21 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import image.ImageBBS;
 import notice.FromTo;
+import oracle.net.aso.s;
 
 public class ImageCrud {
 	private final String MAPPER="imageMapper"; //매퍼의 이름을 선언
+	
+	public ImageBBS getImageDetail(int id) {
+		SqlSession ss = this.getSession();
+		ImageBBS detail = null;
+		try {
+			detail = ss.selectOne(MAPPER + ".getImageDetail", id);
+		} finally {
+			ss.close();
+		}
+		return detail;
+	}
 	
 	public int getTotalImage() {
 		SqlSession ss = this.getSession();
