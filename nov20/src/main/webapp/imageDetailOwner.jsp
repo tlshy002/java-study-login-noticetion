@@ -19,8 +19,11 @@
 	<tr><th>작성일</th><td><%= dto.getW_date() %></td></tr>
 	<tr><td colspan="2" align="center"><img alt="" src="upload/<%= dto.getImagename() %>" width="250" height="200" /></td></tr>
 	<tr><th>내 용</th><td><textarea rows="5" cols="60" readonly="readonly"><%= dto.getContent() %></textarea></td></tr>
-	<tr><td colspan="2" align="center"><a href="">[목록]</a></td></tr>
-	
+	<tr><td colspan="2" align="center">
+		<a href="">[답글]</a> 
+		<a href="">[수정]</a> 
+		<a href="">[삭제]</a> 
+		<a href="">[목록]</a></td></tr> 
 </table>
 </div>
 

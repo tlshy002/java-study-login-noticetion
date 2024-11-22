@@ -18,7 +18,7 @@
 		select w_id, title, writer, w_date, imagename
 		from (select rownum rank, a.*
 			from(select w_id, title, writer, 
-				to_char(w_date, 'YYYY/MM/DD HH24:MI:SS') as w_date, imagename
+				to_char(w_date, 'YYYY/MM/DD') as w_date, imagename
 				from imagebbs_tbl order by w_id desc) a )
 		where rank > #{start} and rank <![CDATA[<]]> #{end}
 	</select>
