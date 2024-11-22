@@ -11,7 +11,7 @@
 	<form action="imageWrite.do" method="post" enctype="multipart/form-data"
 			onsubmit="return check(this)"> <!-- this: 현재의 객체인 form을 의미함 -->
 	<table>
-		<tr><th>제 목</th><td><input type="text" name="TITLE" value="제목을 입력하세요"/></td></tr>
+		<tr><th>제 목</th><td><input type="text" name="TITLE" placeholder="제목을 입력하세요"/></td></tr>
 		<tr><th>암 호</th><td><input type="password" name="PW"/></td></tr>
 		<tr><th>이미지</th><td><input type="file" name="IMAGENAME"/></td></tr>
 		<tr><th>내 용</th><td><textarea rows="8" cols="40" name="CONTENT"></textarea></td></tr>

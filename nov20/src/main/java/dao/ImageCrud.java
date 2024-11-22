@@ -17,7 +17,7 @@ public class ImageCrud {
 		SqlSession ss = this.getSession();
 		int result = 0;
 		try {
-			result = ss.selectOne(MAPPER + ".putImageBBS");
+			result = ss.insert(MAPPER + ".putImageBBS", dto);
 			if(result > 0) ss.commit();
 			else ss.rollback();
 		} finally {
