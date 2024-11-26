@@ -4,6 +4,16 @@
 
 <mapper namespace="imageMapper">
 
+	<update id="updateImageBBS" parameterType="image.ImageBBS">
+		update imagebbs_tbl set title=#{title}, 
+		content=#{content}, imagename=#{imagename} 
+		where w_id=#{w_id}
+	</update>
+
+	<delete id="deleteImageBBS" parameterType="Integer">
+		delete from imagebbs_tbl where w_id = #{id}
+	</delete>
+
 	<select id="getImageDetail" parameterType="Integer" resultType="image.ImageBBS">
 		select w_id, title, writer, to_char(w_date, 'YYYY/MM/DD HH24:MI:SS') as w_date,
 			imagename, content from imagebbs_tbl where w_id = #{id}

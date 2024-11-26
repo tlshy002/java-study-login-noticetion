@@ -15,6 +15,30 @@ import oracle.net.aso.s;
 public class ImageCrud {
 	private final String MAPPER="imageMapper"; //매퍼의 이름을 선언
 	
+	public int updateImageBBS(ImageBBS dto) {
+		SqlSession ss = this.getSession(); int result = 0;
+		try {
+			result = ss.update(MAPPER+".updateImageBBS", dto);
+			if(result > 0) ss.commit();
+			else ss.rollback();
+		}finally {
+			ss.close();
+		}
+		return result;
+	}
+	
+	public int deleteImageBBS(int id) {
+		SqlSession ss = this.getSession(); int result = 0;
+		try {
+			result = ss.delete(MAPPER+".deleteImageBBS", id);
+			if(result > 0) ss.commit();
+			else ss.rollback();
+		}finally {
+			ss.close();
+		}
+		return result;
+	}
+	
 	public ImageBBS getImageDetail(int id) {
 		SqlSession ss = this.getSession();
 		ImageBBS detail = null;

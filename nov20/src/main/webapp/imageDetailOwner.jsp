@@ -21,8 +21,8 @@
 	<tr><th>내 용</th><td><textarea rows="5" cols="60" readonly="readonly"><%= dto.getContent() %></textarea></td></tr>
 	<tr><td colspan="2" align="center">
 		<a href="">[답글]</a> 
-		<a href="">[수정]</a> 
-		<a href="javascript:goDelet()">[삭제]</a> <!-- 서블릿으로 바로 갈때 필요한 파라미터가 있으면 코드가 길어져서 파라미터 처리를 js를 거쳐서 처리한후 서블릿 가기를 해볼것임 -->
+		<a href="javascript:goModify()">[수정]</a> 
+		<a href="javascript:goDelete()">[삭제]</a> <!-- 서블릿으로 바로 갈때 필요한 파라미터가 있으면 코드가 길어져서 파라미터 처리를 js를 거쳐서 처리한후 서블릿 가기를 해볼것임 -->
 		<a href="">[목록]</a></td></tr> 
 </table>
 </div>
@@ -32,7 +32,13 @@
 	<input type="hidden" name="id" value="<%= dto.getW_id() %>">
 </form> 
 <script type="text/javascript">
-function goDelet() {
+
+function goModify() {
+	document.frm.action = "imageModify.do"; //form의 action 채우기. 자바스크립트와 서블릿 매핑
+	document.frm.submit(); //서블릿 호출
+}
+
+function goDelete() {
 	document.frm.action = "imageDelete.do"; //form의 action 채우기. 자바스크립트와 서블릿 매핑
 	document.frm.submit(); //서블릿 호출
 }
