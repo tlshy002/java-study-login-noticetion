@@ -19,7 +19,9 @@ td.main { width: 30%; border: 1px solid green; }
 
 </style>
 </head>
-<body>
+
+
+<body onload="startClock()">
 <header>
 	<div align="center"><img alt="" src="logo.gif"></div>
 </header>
@@ -66,8 +68,35 @@ td.main { width: 30%; border: 1px solid green; }
 	</table>
 </section>
 
+<script type="text/javascript">
+
+function startClock() {
+	workingClock(); //현재 시간을 보여주는 시계호출
+	setInterval(workingClock, 1000); //1초간격으로 workingClock() 계속 호출
+}
+function workingClock() {
+	var today = new Date();
+	var year = today.getFullYear();
+	var month = today.getMonth() + 1;
+	var date = today.getDate();
+	var hour = today.getHours();
+	var min = today.getMinutes();
+	var sec = today.getSeconds();
+
+	if(month < 10) month = "0" + month;
+	if(date < 10) date = "0" + date;
+	if(hour < 10) hour = "0" + hour;
+	if(min < 10) min = "0" + min;
+	if(sec < 10) sec = "0" + sec;
+	
+	var str = year+"/"+month+"/"+date+" "+hour+":"+min+":"+sec;
+	document.getElementById("clock").innerHTML = str;
+}
+</script>
+
 <footer>
-	<h3 align="center">웹 어플리케이션 작성 프로젝트. Copyright 2024</h3>
+	<h3 align="center">웹 어플리케이션 작성 프로젝트. Copyright 2024 
+	<font color="red"><span id="clock"></span></font></span> </h3>
 </footer>
 
 </body>
