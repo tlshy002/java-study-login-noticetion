@@ -27,8 +27,11 @@ public class ImageListServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String page_num = request.getParameter("PAGE_NUM");
+		
 		//페이지네이션을 위한 계산
 		int currentPage = 1; //현재페이지
+		if(page_num != null) currentPage = Integer.parseInt(page_num);
 		int startRow = (currentPage - 1) * SangSoo.PAGE_NUM; 
 		int endRow = ((currentPage - 1) * SangSoo.PAGE_NUM) + 6;
 		
@@ -46,6 +49,8 @@ public class ImageListServlet extends HttpServlet {
 		
 		
 		ArrayList<ImageBBS> imageList = dao.getImageList(ft); //화면전환할때 JSP페이지로 객체(ArrayList)를 넘기려면 Forward 사용
+		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("LIST", imageList);
 		request.setAttribute("TOTAL", totalCount);
 		request.setAttribute("START", startRow + 1); //1페이지 쿼리에서 0번~6번으로 작성했지만 실제로는 1번~5번을 의미하기때문에 시작+1, 끝-1 했음

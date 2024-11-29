@@ -31,6 +31,31 @@
 		<td><%= dto.getW_date() %></td></tr>
 	<% } %>
 </table>
+
+<%
+	int currentPage = (int)request.getAttribute("currentPage");
+	int pageCount = (int)request.getAttribute("pageCount");
+	
+	// 아래 하단 페이지네이션.
+	int startPage = currentPage - (currentPage % 10 == 0 ? 10 : (currentPage % 10)) +1;
+	int endPage = startPage + 9;
+	
+	if(endPage > pageCount) {
+		endPage = pageCount;
+	}
+	if(startPage > 10) {
+%>
+	<a href="imageList.do">[이전]</a>
+<%	}
+	for(int i=startPage; i<=endPage; i++) {
+%>
+	<a href="imageList.do?PAGE_NUM=<%= i %>"><%= i %></a>
+<%	} 
+	if(endPage < pageCount) { //끝페이지가 전체 페이지보다 작으면 [다음]버튼 생성
+%>
+	<a></a>
+<% } %>
+
 </div>
 
 </body>
