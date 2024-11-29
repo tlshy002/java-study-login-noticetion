@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.Crud;
+import sangsoo.SangSoo;
 
 /**
  * Servlet implementation class NoticeListServlet
@@ -40,8 +41,8 @@ public class NoticeListServlet extends HttpServlet {
 			currentPageNum = Integer.parseInt(page_num);
 		} else { // PAGE_NUM값이 없는 경우, 공지사항 보기 버튼을 누른 경우			
 		}
-		int startRow = (currentPageNum - 1) * 5; //시작 일련번호
-		int endRow = ((currentPageNum - 1) * 5) + 6; //종료 일련번호
+		int startRow = (currentPageNum - 1) * SangSoo.PAGE_NUM; //시작 일련번호
+		int endRow = ((currentPageNum - 1) * SangSoo.PAGE_NUM) + 6; //종료 일련번호
 		
 		// jdbc
 		//NoticeListDAO dao = new NoticeListDAO();
@@ -63,8 +64,8 @@ public class NoticeListServlet extends HttpServlet {
 		// mybatis
 		Crud countDao = new Crud();
 		int total = countDao.getNoticeCount();
-		int pageCount = total / 5;
-		if(total % 5 != 0) pageCount++;
+		int pageCount = total / SangSoo.PAGE_NUM;
+		if(total % SangSoo.PAGE_NUM != 0) pageCount++;
 		
 		
 		request.setAttribute("NOTICES", list);

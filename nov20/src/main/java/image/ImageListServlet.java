@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.ImageCrud;
 import notice.FromTo;
+import sangsoo.SangSoo;
 
 /**
  * Servlet implementation class ImageListServlet
@@ -28,14 +29,21 @@ public class ImageListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//페이지네이션을 위한 계산
 		int currentPage = 1; //현재페이지
-		int startRow = (currentPage - 1) * 5; 
-		int endRow = ((currentPage - 1) * 5) + 6;
+		int startRow = (currentPage - 1) * SangSoo.PAGE_NUM; 
+		int endRow = ((currentPage - 1) * SangSoo.PAGE_NUM) + 6;
 		
 		FromTo ft = new FromTo();
 		ft.setStart(startRow);
 		ft.setEnd(endRow);
 		ImageCrud dao = new ImageCrud();
-		int totalCount = dao.getTotalImage();
+		
+		int totalCount = dao.getTotalImage(); //이미지 게시글의 전체 수
+		int pageCount = 0; //페이지 수를 위한 변수 선언
+		if(totalCount > 0) {
+			pageCount = totalCount / SangSoo.PAGE_NUM; //한 페이지에 게시글 5개를 출력
+			if(totalCount % SangSoo.PAGE_NUM > 0) pageCount++; //나머지가 존재하면 페이지수 1증가
+		}
+		
 		
 		ArrayList<ImageBBS> imageList = dao.getImageList(ft); //화면전환할때 JSP페이지로 객체(ArrayList)를 넘기려면 Forward 사용
 		request.setAttribute("LIST", imageList);
