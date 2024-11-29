@@ -12,8 +12,10 @@
 
 <div align="center">
 <h3>이미지 게시글 상세보기</h3>
-<form action="imageDelete.do" method="post" onsubmit="return check(this)">
+
+<form action="imageDeleteDo.do" method="post" >
 	<input type="hidden" name="id" value="<%= dto.getW_id() %>" />
+	<input type="hidden" name="pwd" value="<%= dto.getPassword()  %>"/>
 	<table>
 		<tr><th>제 목</th><td><%= dto.getTitle() %></td></tr>
 		<tr><th>작성자</th><td><%= dto.getWriter() %></td></tr>
@@ -27,6 +29,23 @@
 				
 	</table>
 </form>
+
+<script type="text/javascript">
+function check(frm){
+	if(frm.PWD.value == ''){alert("암호를 입력하세요."); frm.PWD.focus(); return false;	}
+	else {
+		if(frm.pwd.value != frm.PWD.value){//입력한 암호와 DB의 암호가 다른 경우
+			alert("입력한 암호와 게시글의 암호가 일치하지 않습니다. 암호를 확인하세요.");
+			frm.PWD.focus(); return false;
+		}
+	}
+	var flag = confirm("정말로 삭제하시겠습니까?");
+	if( ! flag) return false;
+	
+	return true;
+}
+</script>
+
 </div>
 </body>
 </html>

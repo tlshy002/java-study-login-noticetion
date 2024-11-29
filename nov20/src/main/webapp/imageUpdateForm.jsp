@@ -20,7 +20,7 @@
 		</td></tr>
 	<tr><th>작성자</th><td><%= dto.getWriter() %></td></tr>
 	<tr><th>작성일</th><td><%= dto.getW_date() %></td></tr>
-	<tr><th>암 호</th><td><input type="password" name="PW"/></td></tr>
+	<tr><th>암 호</th><td><input type="password" name="PWD"/></td></tr>
 	<tr><td colspan="2" align="center"><input type="file" name="image_name"/><br/>
 		<img alt="" src="upload/<%= dto.getImagename() %>" width="250" height="200"/></td></tr>
 	<tr><th>내 용</th><td><textarea rows="5" cols="60" 
