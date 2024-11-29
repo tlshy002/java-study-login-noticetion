@@ -76,6 +76,7 @@ function startClock() {
 }
 function workingClock() {
 	var today = new Date();
+	var days = ["일","월","화","수","목","금","토"];
 	var year = today.getFullYear();
 	var month = today.getMonth() + 1;
 	var date = today.getDate();
@@ -89,7 +90,9 @@ function workingClock() {
 	if(min < 10) min = "0" + min;
 	if(sec < 10) sec = "0" + sec;
 	
-	var str = year+"/"+month+"/"+date+" "+hour+":"+min+":"+sec;
+	var index = today.getDay(); //0~6출력 
+	var day = days[index]; //요일을 변수에 담기
+	var str = year+"/"+month+"/"+date+"("+ day +") "+hour+":"+min+":"+sec;
 	document.getElementById("clock").innerHTML = str;
 }
 </script>
