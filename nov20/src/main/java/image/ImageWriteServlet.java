@@ -87,12 +87,15 @@ public class ImageWriteServlet extends HttpServlet {
 					dto.setParent_id(Integer.parseInt(parentId));
 					dto.setGroup_id(Integer.parseInt(groupId));
 					dto.setOrder_no(Integer.parseInt(orderNo));
+					
 					//DB에서 답글 순서번호(order_no)를 update한다.
+					dao.updateOrderNo(dto); //이제부터는 같은글에 답글을 여러개 달면 출력순서의 번호 증가함
 				}
 				
 				int yesOrNo = dao.insertImageBBS(dto);//이미지게시글 테이블에 insert 실행
 				
 				if(yesOrNo > 0) {//이미지 게시글 등록 성공한 경우
+					result = "OK";
 					System.out.println("이미지 게시글 등록 성공");
 				}else {//이미지 게시글 등록 실패한 경우
 					System.out.println("이미지 게시글 등록 실패");
@@ -105,7 +108,7 @@ public class ImageWriteServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		//파일을 업로드하고 게시글을 DB에 저장한 후 uploadResult.jsp로 전환 (Redirect? Forward? ==> Redirect)
-		//response.sendRedirect("index.jsp?BODY=uploadResult.jsp?R=" + result);
+		response.sendRedirect("index.jsp?BODY=uploadResult.jsp?R=" + result);
 	}
 
 }

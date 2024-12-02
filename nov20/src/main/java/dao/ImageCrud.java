@@ -15,6 +15,18 @@ import oracle.net.aso.s;
 public class ImageCrud {
 	private final String MAPPER="imageMapper"; //매퍼의 이름을 선언
 	
+	public int updateOrderNo(ImageBBS dto) {
+		SqlSession ss = this.getSession(); int result = 0;
+		try {
+			result = ss.update(MAPPER + ".updateOrderNo", dto);
+			if(result > 0) ss.commit();
+			else ss.rollback();
+		} finally {
+			ss.close();
+		}
+		return result;
+	}
+	
 	public int updateImageBBS(ImageBBS dto) {
 		SqlSession ss = this.getSession(); int result = 0;
 		try {

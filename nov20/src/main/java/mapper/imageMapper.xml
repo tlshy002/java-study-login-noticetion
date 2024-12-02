@@ -3,6 +3,10 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="imageMapper">
+	<update id="updateOrderNo" parameterType="image.ImageBBS">
+		update imagebbs_tbl set order_no = order_no + 1
+		where group_id = #{group_id} and order_no >= #{group_id}
+	</update>
 
 	<update id="updateImageBBS" parameterType="image.ImageBBS">
 		update imagebbs_tbl set title=#{title}, 
@@ -30,7 +34,9 @@
 		from (select rownum rank, a.*
 			from(select w_id, title, writer, 
 				to_char(w_date, 'YYYY/MM/DD') as w_date, imagename
-				from imagebbs_tbl order by w_id desc) a )
+				from imagebbs_tbl 
+				order by group_id desc, order_no asc
+				) a )
 		where rank > #{start} and rank <![CDATA[<]]> #{end}
 	</select>
 
