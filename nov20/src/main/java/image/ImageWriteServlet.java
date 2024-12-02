@@ -59,6 +59,10 @@ public class ImageWriteServlet extends HttpServlet {
 				// JSP(폼)에 있는 파라미터 값을 서블릿으로 불러오는 법
 				// 지금까지는 HttpServletRequest클래스 request 객체의 getParameter()메서드를 사용했었는데,
 				// 이번에는 MultipartRequest클래스의 getParameter() 메서드를 사용함
+				String orderNo = multipart.getParameter("orderno");
+				String groupId = multipart.getParameter("groupid");
+				String parentId = multipart.getParameter("parentid");
+				
 				String title = multipart.getParameter("TITLE");
 				String password = multipart.getParameter("PW");
 				String content = multipart.getParameter("CONTENT");
@@ -74,6 +78,18 @@ public class ImageWriteServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				String id = (String)session.getAttribute("ID");//세션에서 계정을 찾는다.
 				dto.setWriter(id);
+				
+				if(parentId == null || parentId.equals("")) {//parentId가 없으므로 원글
+					dto.setGroup_id(number);//그룹번호가 글번호와 같다.
+					dto.setParent_id(0);
+					dto.setOrder_no(0);
+				}else {//parentId가 있으므로 답글
+					dto.setParent_id(Integer.parseInt(parentId));
+					dto.setGroup_id(Integer.parseInt(groupId));
+					dto.setOrder_no(Integer.parseInt(orderNo));
+					//DB에서 답글 순서번호(order_no)를 update한다.
+				}
+				
 				int yesOrNo = dao.insertImageBBS(dto);//이미지게시글 테이블에 insert 실행
 				
 				if(yesOrNo > 0) {//이미지 게시글 등록 성공한 경우
