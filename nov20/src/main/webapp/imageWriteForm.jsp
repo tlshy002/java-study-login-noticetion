@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ page import="image.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,9 +8,20 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+	ImageBBS dto = (ImageBBS)request.getAttribute("imageBBS");
+	String title = (String)request.getAttribute("title");
+%>
+
+
 	<h3 align="center">이미지 게시글 작성</h3>
 	<form action="imageWrite.do" method="post" enctype="multipart/form-data"
 			onsubmit="return check(this)"> <!-- this: 현재의 객체인 form을 의미함 -->
+	
+	<input type="hidden" name="orderno" />
+	<input type="hidden" name="groupid" />
+	<input type="hidden" name="parentid" />
+	
 	<table>
 		<tr><th>제 목</th><td><input type="text" name="TITLE" placeholder="제목을 입력하세요"/></td></tr>
 		<tr><th>암 호</th><td><input type="password" name="PW"/></td></tr>

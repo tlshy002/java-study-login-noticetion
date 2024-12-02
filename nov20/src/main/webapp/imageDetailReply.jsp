@@ -20,10 +20,22 @@
 	<tr><td colspan="2" align="center"><img alt="" src="upload/<%= dto.getImagename() %>" width="250" height="200" /></td></tr>
 	<tr><th>내 용</th><td><textarea rows="5" cols="60" readonly="readonly"><%= dto.getContent() %></textarea></td></tr>
 	<tr><td colspan="2" align="center">
-		<a href="">[답글]</a> 
+		<a href="javascript:goReply()">[답글]</a> 
 		<a href="">[목록]</a></td></tr> 
 </table>
 </div>
+
+<form name="move" method="post">
+	<input type="hidden" name="id" value="<%= dto.getW_id() %>" />
+	<input type="hidden" name="parentid" value="<%= dto.getW_id() %>" />
+	<input type="hidden" name="groupid" value="<%= dto.getGroup_id() %>" />
+</form>
+<script type="text/javascript"> //답글을 누르면 위 폼이 서블릿으로 날아감. 폼의 액션은 js가 채움
+function goReply() {
+	document.move.action = "imageForm.do"
+	document.move.submit();
+}
+</script>
 
 </body>
 </html>
