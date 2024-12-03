@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="itemsMapper">
+
+	<select id="getCode" parameterType="String" resultType="String">
+		select item_code from sellingitems_tbl where item_code = #{code}
+	</select>
+
+	<select id="getNations" resultType="items.MadeIn">
+		select code, name from madein_tbl
+	</select>
+</mapper>

@@ -19,5 +19,6 @@
 	<mappers>
 		<mapper resource="mapper/noticeMapper.xml"/>
 		<mapper resource="mapper/imageMapper.xml"/>
+		<mapper resource="mapper/itemsMapper.xml"/>
 	</mappers>
 </configuration>
