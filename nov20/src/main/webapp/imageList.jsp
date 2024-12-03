@@ -44,7 +44,7 @@
 	}
 	if(startPage > 10) {
 %>
-	<a href="">[이전]</a>
+	<a href="imageList.do?PAGE_NUM<%= startPage - 1 %>">[이전]</a>
 <%	}
 	for(int i=startPage; i<=endPage; i++) {
 %>
@@ -52,7 +52,7 @@
 <%	} 
 	if(endPage < pageCount) { //끝페이지가 전체 페이지보다 작으면 [다음]버튼 생성
 %>
-	<a href="">[다음]</a>
+	<a href="imageList.do?PAGE_NUM<%= endPage + 1 %>">[다음]</a>
 <% } %>
 
 </div>
