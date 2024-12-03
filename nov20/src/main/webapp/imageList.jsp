@@ -44,7 +44,7 @@
 	}
 	if(startPage > 10) {
 %>
-	<a href="imageList.do">[이전]</a>
+	<a href="">[이전]</a>
 <%	}
 	for(int i=startPage; i<=endPage; i++) {
 %>

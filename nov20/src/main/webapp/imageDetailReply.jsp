@@ -21,7 +21,7 @@
 	<tr><th>내 용</th><td><textarea rows="5" cols="60" readonly="readonly"><%= dto.getContent() %></textarea></td></tr>
 	<tr><td colspan="2" align="center">
 		<a href="javascript:goReply()">[답글]</a> 
-		<a href="">[목록]</a></td></tr> 
+		<a href="imageList.do">[목록]</a></td></tr> 
 </table>
 </div>
 
