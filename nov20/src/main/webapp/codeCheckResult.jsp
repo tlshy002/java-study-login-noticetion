@@ -18,9 +18,19 @@
 </form><br/>
 
 <% if(dup == null) { %>
-	<%= code %>는 사용 가능합니다.
+	<%= code %>는 사용 가능합니다. <input type="button" value="사용" onclick="codeOk()">
 <% } else { %>
 	<%= code %>는 이미 사용 중 입니다.
 <% }%>
+
+<script type="text/javascript">
+function codeOk() {
+	//팝업창에서 입력된 상품코드를 상품등록 폼으로 데이터 전송
+	//즉, 자식jsp에서 부모jsp(opener)로 데이터 전송
+	opener.document.fm.CODE.value = document.frm.CODE.value;
+	self.close();//팝업창 닫기
+}
+</script>
+
 </body>
 </html>
