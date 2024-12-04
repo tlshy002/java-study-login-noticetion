@@ -26,7 +26,11 @@ public class ItemListServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String page_num = request.getParameter("PAGE_NUM"); //페이지번호를 클릭한 경우의 번호를 할당
+		
 		int currentPage = 1; //현재페이지 설정
+		if(page_num != null) currentPage = Integer.parseInt(page_num);
+		
 		int startRow = (currentPage - 1) * 5;
 		int endRow = ((currentPage - 1) * 5) + 6;
 		
