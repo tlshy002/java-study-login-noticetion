@@ -12,7 +12,7 @@
 	String dup = (String)request.getAttribute("DUP");
 %>
 <h3 align="center">상품 코드 중복 검사 결과</h3>
-<form action="" name="frm">
+<form action="codeCheck.do" name="frm">
 	상품 코드: <input type="text" name="CODE" value="<%= code %>">
 	<input type="submit" value="중복 검사">	
 </form><br/>
@@ -28,6 +28,9 @@ function codeOk() {
 	//팝업창에서 입력된 상품코드를 상품등록 폼으로 데이터 전송
 	//즉, 자식jsp에서 부모jsp(opener)로 데이터 전송
 	opener.document.fm.CODE.value = document.frm.CODE.value;
+	opener.document.fm.CODE.readOnly = true;
+	opener.document.fm.codeCheck.value = "YES"; //중복검사용 파라미터에 값넣기
+	
 	self.close();//팝업창 닫기
 }
 </script>

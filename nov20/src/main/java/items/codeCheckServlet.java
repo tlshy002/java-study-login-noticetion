@@ -31,7 +31,7 @@ public class codeCheckServlet extends HttpServlet {
 		ItemsCrud dao = new ItemsCrud(); //DAO생성
 		String result = dao.getCode(code);
 		request.setAttribute("CODE", code); //입력한 상품코드 저장
-		request.setAttribute("DUP", result); //중복검사 결과 저장
+		request.setAttribute("DUP", result); //중복검사 결과 저장 //DUP가 null이면 사용가능 null이 아니면 중복임
 		
 		//중복검사 결과가 존재하면 '이미사용중', 검색결과가 없으면 '사용가능'
 		RequestDispatcher r = request.getRequestDispatcher("codeCheckResult.jsp");
