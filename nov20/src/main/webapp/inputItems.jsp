@@ -66,7 +66,7 @@ function check(myfrm) {
 			alert("상품가격은 숫자로 입력하세요.");
 			myfrm.PRICE.focus(); return false;
 		} else {
-			if(myfrm.PRICE.value > 0) {
+			if(myfrm.PRICE.value <= 0) {
 				alert("상품가격은 0보다 커야합니다.");
 				myfrm.PRICE.focus(); return false;
 			}

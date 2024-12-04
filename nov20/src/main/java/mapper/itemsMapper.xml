@@ -4,6 +4,10 @@
 
 <mapper namespace="itemsMapper">
 
+	<insert id="putItem" parameterType="items.Items">
+		insert into sellingitems_tbl values(#{item_code},#{item_title},#{price},#{item_spec},sysdate,#{nation})
+	</insert>
+
 	<select id="getCode" parameterType="String" resultType="String">
 		select item_code from sellingitems_tbl where item_code = #{code}
 	</select>

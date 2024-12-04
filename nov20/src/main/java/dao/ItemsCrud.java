@@ -7,10 +7,23 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import items.Items;
 import items.MadeIn;
 
 public class ItemsCrud {
 	private final String MAPPER = "itemsMapper.";
+	
+	public int putItem(Items item) {
+		SqlSession ss = this.getSession(); int result = 0;
+		try {
+			result = ss.insert(MAPPER + "putItem" , item);
+			if(result > 0) ss.commit();
+			else ss.rollback();
+		} finally {
+			ss.close();
+		}
+		return result;
+	}
 	
 	//상품코드 중복검사에 사용되는 매퍼를 호출하는 메서드
 	public String getCode(String code) {

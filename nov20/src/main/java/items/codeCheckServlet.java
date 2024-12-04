@@ -25,7 +25,7 @@ public class codeCheckServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String code = request.getParameter("CODE");
-		//response.sendRedirect("codeCheckResult.jsp"); //팝업창이 뜨는지 검사
+		//response.sendRedirect("codeCheckResult.jsp"); //팝업창이 뜨는지 확인,테스트용
 		
 		//상품정보테이블에서 code의 상품코드 검색하기
 		ItemsCrud dao = new ItemsCrud(); //DAO생성
