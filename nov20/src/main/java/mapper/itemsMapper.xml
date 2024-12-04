@@ -4,6 +4,12 @@
 
 <mapper namespace="itemsMapper">
 
+	<select id="getItem" parameterType="String" resultType="items.Items">
+		select item_code, item_title, price, madein "nation",
+			to_char(reg_date, 'YYYY/MM/DD') "reg_date", item_spec
+		from sellingitems_tbl where item_code = #{code}
+	</select>
+
 	<select id="getTotalItems" resultType="Integer">
 		select count(*) from sellingitems_tbl
 	</select>

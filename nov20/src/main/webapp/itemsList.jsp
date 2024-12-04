@@ -27,8 +27,10 @@
 <table>
 	<tr><th>상품코드</th><th>상품이름</th><th>상품가격</th><th>원산지</th><th>등록일</th><th>비 고</th></tr>
 	<% for(Items item : list) { %>
-	<tr><td><%= item.getItem_code() %></td><td><%= item.getItem_title() %></td>
-		<td><%= item.getPrice() %></td><td><%= item.getNation() %></td>
+	<tr><td><%= item.getItem_code() %></td>
+		<td><a href="itemDetail.do?CODE=<%= item.getItem_code() %>"><%= item.getItem_title() %></a></td> <!-- 상품코드와 함께 서블릿으로 이동해야 서블릿에서 db조회가능 -->
+		<td><%= item.getPrice() %></td>
+		<td><%= item.getNation() %></td>
 		<td><%= item.getReg_date() %></td><td><a href="">장바구니 담기</a></td></tr>
 	<% } %>
 </table>

@@ -14,8 +14,18 @@ import notice.FromTo;
 public class ItemsCrud {
 	private final String MAPPER = "itemsMapper.";
 	
+	public Items getItem(String code) {
+		SqlSession ss = this.getSession();	Items dto; //조회결과를 저장할 변수 선언
+		try {
+			dto = ss.selectOne(MAPPER + "getItem", code);
+		} finally {
+			ss.close();
+		} 
+		return dto;
+	}
+	
 	public int getTotalItems() {
-		SqlSession ss = this.getSession();	Integer count = null;
+		SqlSession ss = this.getSession();	Integer count = 0;
 		try {
 			count = ss.selectOne(MAPPER + "getTotalItems");
 		} finally {
