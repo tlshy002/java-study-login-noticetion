@@ -4,6 +4,20 @@
 
 <mapper namespace="itemsMapper">
 
+	<select id="getTotalItems" resultType="Integer">
+		select count(*) from sellingitems_tbl
+	</select>
+	
+	<select id="getItems" parameterType="notice.FromTo" resultType="items.Items">
+		select item_code, item_title, price, 
+				madein "nation", regdate "reg_date" from
+		(select rownum rn, a.*
+			from (select item_code, item_title, price, madein, to_char(reg_date, 'YYYY/MM/DD') regdate 
+				from sellingitems_tbl) a 
+		)
+		where rn <![CDATA[>]]> #{start} and rn <![CDATA[<]]> #{end}
+	</select>
+
 	<insert id="putItem" parameterType="items.Items">
 		insert into sellingitems_tbl values(#{item_code},#{item_title},#{price},#{item_spec},sysdate,#{nation})
 	</insert>

@@ -46,7 +46,7 @@ td.main { width: 30%; border: 1px solid green; }
 					<a href="boardList.do">■ 게시글 보기</a><br>
 					<a href="bbsLoginCheck.do">■ 게시글 쓰기</a><br>
 					
-					<a href="">■ 상품 보기</a><br>
+					<a href="itemsList.do">■ 상품 보기</a><br>
 				<% if(id != null && id.equals("admin")) { %>
 					<a href="index.jsp?BODY=inputNation.jsp">■ 상품 원산지 등록</a><br>
 					<a href="findNation.do">■ 상품 등록</a><br>

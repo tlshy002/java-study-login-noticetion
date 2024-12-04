@@ -9,9 +9,31 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import items.Items;
 import items.MadeIn;
+import notice.FromTo;
 
 public class ItemsCrud {
 	private final String MAPPER = "itemsMapper.";
+	
+	public int getTotalItems() {
+		SqlSession ss = this.getSession();	Integer count = null;
+		try {
+			count = ss.selectOne(MAPPER + "getTotalItems");
+		} finally {
+			ss.close();
+		} 
+		return count;
+	}
+	
+	//상품리스트 보기기능 dao. 쿼리의 조회결과가 여러개이기 때문에 List에 담음. 담는 데이터 타입은 DTO
+	public List<Items> getItems(FromTo ft) {
+		SqlSession ss = this.getSession();	List<Items> list;
+		try {
+			list = ss.selectList(MAPPER + "getItems", ft);
+		} finally {
+			ss.close();
+		} 
+		return list;
+	}
 	
 	public int putItem(Items item) {
 		SqlSession ss = this.getSession(); int result = 0;
