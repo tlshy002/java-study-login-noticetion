@@ -45,8 +45,14 @@
 	<a href="itemsList.do?PAGE_NUM<%= startPage - 1 %>">[이전]</a>
 <%	}
 	for(int i=startPage; i<=endPage; i++) {
+		if(currentPage == i) {
 %>
+	<font size="6"> <% } %>
 	<a href="itemsList.do?PAGE_NUM=<%= i %>"><%= i %></a>
+	
+	<% if(currentPage == i) { %>
+	</font> <% } %>
+	
 <%	} 
 	if(endPage < pageCount) { //끝페이지가 전체 페이지보다 작으면 [다음]버튼 생성
 %>
