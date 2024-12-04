@@ -25,6 +25,9 @@ public class PutItemsServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// jsp 상품정보 입력폼에서 받은값을 db에 넣기전에 한글처리하기
+		request.setCharacterEncoding("EUC-KR");
+		
 		//상품정보를 DTO에 넣고 DTO를 DAO의 메서드로 전달해서 상품정보 삽입하기
 		//삽입결과를 jsp 로 화면전환
 		
