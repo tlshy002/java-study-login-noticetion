@@ -5,8 +5,8 @@
 <mapper namespace="itemsMapper">
 	
 	<update id="updateItem" parameterType="items.Items">
-		update sellingitems_tbl set item_title=#{item_title}, madein=#{nation}, item_spec=#{item_spec}
-			where item_code=#{item_code}
+		update sellingitems_tbl set item_title=#{item_title}, madein=#{nation}, item_spec=#{item_spec},
+			price=#{price} where item_code=#{item_code}
 	</update>
 
 	<delete id="deleteItem" parameterType="String">

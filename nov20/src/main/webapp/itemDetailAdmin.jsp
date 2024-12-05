@@ -21,6 +21,9 @@
 	<tr><th>상품이름</th>
 		<td><input type="text" name="NAME" value="<%= dto.getItem_title() %>">
 		</td></tr>
+	<tr><th>상품가격</th>
+		<td><input type="text" name="PRICE" value="<%= dto.getPrice() %>">
+		</td></tr>
 	<tr><th>원 산 지</th>
 		<td><select name="NATION">
 		<% 
@@ -45,6 +48,7 @@
 function check(frm) {
 	if(frm.NAME.value == '') { alert("상품이름을 입력하세요."); frm.NAME.focus(); return false; }
 	if(frm.SPEC.value == '') { alert("상품설명을 입력하세요."); frm.SPEC.focus(); return false; }
+	if(frm.PRICE.value == '') { alert("가격을 입력하세요."); frm.PRICE.focus(); return false; }
 	if( !confirm("정말로 작업을 진행하시겠습니까?")) return false;
 }
 </script>

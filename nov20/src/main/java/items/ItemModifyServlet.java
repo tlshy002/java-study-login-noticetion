@@ -45,6 +45,7 @@ public class ItemModifyServlet extends HttpServlet {
 			String name = request.getParameter("NAME");
 			String nation = request.getParameter("NATION");
 			String spec = request.getParameter("SPEC");
+			String price = request.getParameter("PRICE");
 			
 			// db에 update 수행하기 (dto, dao, mapper(쿼리문작성))
 			Items dto = new Items(); //상품정보용 DTO생성
@@ -52,6 +53,7 @@ public class ItemModifyServlet extends HttpServlet {
 			dto.setItem_code(code);
 			dto.setNation(nation);
 			dto.setItem_spec(spec);
+			dto.setPrice(Integer.parseInt(price));
 			
 			int result = dao.updateItem(dto);
 			String url = "index.jsp?BODY=itemUpdateResult.jsp?R=";
