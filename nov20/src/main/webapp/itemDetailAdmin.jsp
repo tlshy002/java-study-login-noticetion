@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ page import="items.Items" %>
+<%@ page import="items.Items, items.MadeIn, java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% Items dto = (Items)request.getAttribute("ITEM"); %>
+<% 
+	Items dto = (Items)request.getAttribute("ITEM"); 
+	ArrayList<MadeIn> list = (ArrayList<MadeIn>)request.getAttribute("NATIONS");
+%>
 <div align="center">
 <h3>상품 상세 정보</h3>
 <form action="" method="post" onsubmit="return check(this)">
@@ -17,7 +20,12 @@
 	<tr><th>상품이름</th>
 		<td><input type="text" name="NAME" value="<%= dto.getItem_title() %>">
 		</td></tr>
-	<tr><th>원 산 지</th><td><%= dto.getNation() %></td></tr>
+	<tr><th>원 산 지</th>
+		<td><select name="NATION">
+		<% for(MadeIn nation : list) { %>
+			<option value="<%= nation.getCode() %>"><%= nation.getName() %></option>
+		<% } %>
+		</select></td></tr>
 	<tr><th>등 록 일</th><td><%= dto.getReg_date() %></td></tr>
 	<tr><th>상품설명</th><td><textarea rows="5" cols="60" name="SPEC">
 		<%= dto.getItem_spec() %></textarea></td></tr>

@@ -1,6 +1,7 @@
 package items;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,6 +41,8 @@ public class ItemDetailServlet extends HttpServlet {
 		if(userId != null && userId.equals("admin")) {
 			// 관리자인 경우, itemDetailAdmin.jsp로 이동
 			url = "itemDetailAdmin.jsp";
+			ArrayList<MadeIn> nations = (ArrayList<MadeIn>)dao.getNations();
+			request.setAttribute("NATIONS", nations);
 		} else {
 			url = "itemDetail.jsp";
 		}
