@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.ItemsCrud;
 
@@ -31,7 +32,18 @@ public class ItemDetailServlet extends HttpServlet {
 		Items dto = dao.getItem(code);
 		request.setAttribute("ITEM", dto); //조회결과를 HttpServletRequest에 저장
 		
-		RequestDispatcher r = request.getRequestDispatcher("index.jsp?BODY=itemDetail.jsp");
+		// 관리자로 로그인했는지 알기위해, 세션에서 계정찾기
+		HttpSession session = request.getSession();
+		String userId = (String)session.getAttribute("ID"); //loginServlet에서 찾음
+		
+		String url = "";
+		if(userId != null && userId.equals("admin")) {
+			// 관리자인 경우, itemDetailAdmin.jsp로 이동
+			url = "itemDetailAdmin.jsp";
+		} else {
+			url = "itemDetail.jsp";
+		}
+		RequestDispatcher r = request.getRequestDispatcher("index.jsp?BODY="+url);
 		r.forward(request, response);
 	}
 

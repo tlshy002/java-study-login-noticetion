@@ -16,7 +16,7 @@
 	<tr><th>상품이름</th><td><%= dto.getItem_title() %></td></tr>
 	<tr><th>원 산 지</th><td><%= dto.getNation() %></td></tr>
 	<tr><th>등 록 일</th><td><%= dto.getReg_date() %></td></tr>
-	<tr><th>상품정보</th><td><textarea rows="5" cols="60" readonly="readonly"><%= dto.getItem_spec() %></textarea></td></tr>
+	<tr><th>상품설명</th><td><textarea rows="5" cols="60" readonly="readonly"><%= dto.getItem_spec() %></textarea></td></tr>
 </table>
 </div>
 
