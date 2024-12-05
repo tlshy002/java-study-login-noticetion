@@ -14,6 +14,18 @@ import notice.FromTo;
 public class ItemsCrud {
 	private final String MAPPER = "itemsMapper.";
 	
+	public int deleteItem(String id) {
+		SqlSession ss = this.getSession();	int result = 0; //조회결과를 저장할 변수 선언
+		try {
+			result = ss.delete(MAPPER + "deleteItem", id);
+			if(result > 0) ss.commit();
+			else ss.rollback();
+		} finally {
+			ss.close();
+		} 
+		return result;
+	}
+	
 	public Items getItem(String code) {
 		SqlSession ss = this.getSession();	Items dto; //조회결과를 저장할 변수 선언
 		try {
