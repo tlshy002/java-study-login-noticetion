@@ -34,6 +34,9 @@ public class loginServlet extends HttpServlet {
 		//LoginCheckDAO dao = new LoginCheckDAO();
 		//boolean yesOrNo = dao.doit(id, pw);
 		
+		//팝업창을 통한 로그인인지 구분하기
+		String popup = request.getParameter("POPUP");
+		
 		Crud dao = new Crud();
 		LoginDTO dto = new LoginDTO();
 		dto.setId(id);
@@ -44,9 +47,18 @@ public class loginServlet extends HttpServlet {
 			//로그인 성공했으므로 HttpSession에 데이터(보통 계정정보)를 저장한다.
 			HttpSession session = request.getSession();
 			session.setAttribute("ID", id);
-			response.sendRedirect("index.jsp?BODY=loginSuccess.jsp");
-		} else {
-			response.sendRedirect("index.jsp?BODY=login.jsp?MSG=f");
+			
+			if(popup != null) { //팝업창을 통한 로그인
+				response.sendRedirect("loginSuccess.jsp");
+			} else { //index.jsp를 통한 로그인
+				response.sendRedirect("index.jsp?BODY=loginSuccess.jsp");
+			}
+		} else { //로그인 실패한경우
+			if(popup != null) {
+				response.sendRedirect("index.jsp?MSG=Y");
+			} else {
+				response.sendRedirect("index.jsp?BODY=login.jsp?MSG=f");
+			}
 		}
 	}
 

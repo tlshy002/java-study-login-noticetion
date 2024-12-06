@@ -34,8 +34,9 @@
 		<td><%= item.getPrice() %></td>
 		<td><%= item.getNation() %></td>
 		<td><%= item.getReg_date() %></td>
-	<% if(userId != null && ! userId.equals("admin")) { %>
-		<td><a href="#" onclick="window.open('addCart.do?CODE=<%= item.getItem_code() %>')">장바구니 담기</a></td>
+	<% if(userId == null || ! userId.equals("admin")) { %>
+		<td><a href="#" 
+			onclick="window.open('addCart.do?CODE=<%= item.getItem_code() %>','_blank_','width=450,height=200,top=200,left=200')">장바구니 담기</a></td>
 	<%	} %>
 		</tr>
 	<% 	} %>
