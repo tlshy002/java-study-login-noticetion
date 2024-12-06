@@ -17,6 +17,8 @@
 	int pageCount = (int)request.getAttribute("pageCount");
 	int currentPage = (int)request.getAttribute("currentPage");
 	ArrayList<Items> list = (ArrayList<Items>)request.getAttribute("ITEMS");
+	
+	String userId = (String)session.getAttribute("ID");
 %>
 
 <div align="center">
@@ -31,8 +33,12 @@
 		<td><a href="itemDetail.do?CODE=<%= item.getItem_code() %>"><%= item.getItem_title() %></a></td> <!-- 상품코드와 함께 서블릿으로 이동해야 서블릿에서 db조회가능 -->
 		<td><%= item.getPrice() %></td>
 		<td><%= item.getNation() %></td>
-		<td><%= item.getReg_date() %></td><td><a href="">장바구니 담기</a></td></tr>
-	<% } %>
+		<td><%= item.getReg_date() %></td>
+	<% if(userId != null && ! userId.equals("admin")) { %>
+		<td><a href="#" onclick="window.open('addCart.do?CODE=<%= item.getItem_code() %>')">장바구니 담기</a></td>
+	<%	} %>
+		</tr>
+	<% 	} %>
 </table>
 
 <%	// 아래 하단 페이지네이션.
