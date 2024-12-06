@@ -37,7 +37,7 @@ public class CartListServlet extends HttpServlet {
 			
 			int total = 0; //장바구니에 저장된 상품의 총액계산을 위한 변수 선언
 			ItemsCrud dao = new ItemsCrud(); //DAO 생성 ---> 왜?상품번호로 DB에서 상품정보를 찾아야하기때문 
-			ArrayList<Items> itemsList = new ArrayList<Items>(); //장바구니 상품을 위한 ArrayList
+			ArrayList<Items> itemsList = new ArrayList<Items>(); //장바구니 정보를 저장하기 위한 ArrayList ---> jsp로 보내야 장바구니 목록확인이 가능함
 			
 			for(int i=0; i<codeList.size(); i++) {
 				String code = codeList.get(i); //i 번째 상품의 번호를 찾기
@@ -53,6 +53,7 @@ public class CartListServlet extends HttpServlet {
 				itemsList.add(myItem);
 			} //for문: 장바구니에 담긴 모든 상품을 차례로 반복
 			
+			// for문 반복으로 장바구니에 상품을 찾지 못하면 새롭게 만들기
 			request.setAttribute("TOTAL", total); //총계를 HttpServletRequest에 저장
 			request.setAttribute("CARTLIST", itemsList); //장바구니의 상품목록 저장
 		}

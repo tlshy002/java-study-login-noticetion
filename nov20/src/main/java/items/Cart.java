@@ -11,12 +11,23 @@ public class Cart { //장바구니역할의 클래스
 	private ArrayList<String> codeList = new ArrayList<String>(); //상품번호 n개 저장
 	private ArrayList<Integer> numList = new ArrayList<Integer>(); //상품개수 n개 저장
 
-	//장바구니보기에 사여ㅛ요ㅕㅇㄹ효ㅑㅇ로ㅠㄹ
+	//장바구니보기에 사용함
 	public ArrayList<String> getCodeList() { return codeList; }
 	public ArrayList<Integer> getNumList() { return numList; }
 	
 	
-	//메서드: 3개 필요(장바구니에 담는, 장바구니에서 삭제하는, 장바구니에서 변경하는 메서드)	
+	//메서드: 3개 필요(장바구니에 담는, 장바구니에서 삭제하는, 장바구니에서 변경하는 메서드)
+	
+	public void deleteItem(String code) {
+		for(int i=0; i<codeList.size(); i++) { 
+			if(codeList.get(i).equals(code)) { //삭제하려는 
+				codeList.remove(i); //i 번째 상품코드 삭제
+				numList.remove(i); //i 번째 상품개수 삭제
+				return; //메서드 종료
+			}
+		}
+	}
+	
 	public void addCart(String code, Integer num) {
 		//code안에 있는 상품의 번호를 codeList에 저장 전에, 해당 상품의 번호가 codeList에 있는지 먼저 확인. 
 		//만약 codeList에 같은 상품의 번호가 있으면, numList의 해당 상품의 개수를 +1증가하기
@@ -33,7 +44,5 @@ public class Cart { //장바구니역할의 클래스
 		}
 		codeList.add(code);
 		numList.add(num);
-		
-		
 	}
 }
