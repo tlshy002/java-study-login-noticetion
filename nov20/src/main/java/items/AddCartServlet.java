@@ -29,9 +29,16 @@ public class AddCartServlet extends HttpServlet {
 		if(id == null) { //계정이 없는 경우, 즉, 로그인을 안 한 경우
 			url = "login.jsp?MSG=Y";
 		} else { //계정이 있는 경우, 즉, 로그인을 한 경우
+			String code = request.getParameter("CODE"); //상품번호 수신
+			
+			Cart cart = (Cart)session.getAttribute("CART"); //세션에서 장바구니 찾기
+			if(cart == null) { //세션에 장바구니가 없을때만 Cart를 새로 생성
+				cart = new Cart(id); //로그인한 계정으로 장바구니 생성			
+			}
+			cart.addCart(code,1); //상품번화와 상품개수(1개)저장
+			session.setAttribute("CART", cart); //장바구니를 세션에 저장
 			url = "addCartResult.jsp";
 		}
-		
 		response.sendRedirect(url);
 	}
 
