@@ -49,8 +49,9 @@ public class loginServlet extends HttpServlet {
 			session.setAttribute("ID", id);
 			
 			if(popup != null) { //팝업창을 통한 로그인
-				response.sendRedirect("loginSuccess.jsp");
-			} else { //index.jsp를 통한 로그인
+				response.sendRedirect("loginResult.jsp"); //팝업창 닫고 index.jsp 새로고침
+				// response.sendRedirect("loginSuccess.jsp"); //팝업창에 환영합니다 띄우기
+			} else { //index.jsp를 통한 일반로그인
 				response.sendRedirect("index.jsp?BODY=loginSuccess.jsp");
 			}
 		} else { //로그인 실패한경우
