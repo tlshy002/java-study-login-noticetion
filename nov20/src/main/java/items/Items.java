@@ -8,6 +8,22 @@ public class Items { //상품정보 DTO
 	private String reg_date;
 	private String nation; //원산지 국가코드
 	
+	//장바구니에서 사용할 변수
+	private int sum; //소계: 상품코드 별 구매금액
+	private int num; //개수: 상품코드 별 개수
+	
+	public int getSum() {
+		return sum;
+	}
+	public void setSum(int sum) {
+		this.sum = sum;
+	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
 	public String getItem_code() {
 		return item_code;
 	}
